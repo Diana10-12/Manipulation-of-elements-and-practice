@@ -585,6 +585,79 @@
 // 	});	
 // }
 
+// 342.1 Добавьте в конец каждого абзаца ссылку, по клику на которую текст абзаца будет перечеркиваться (а ссылка - нет).
+// let span = document.querySelectorAll('#parent p');
+// for(let elem of span){
+// 	let span = document.createElement('span');
+// 	span.textContent = elem.textContent;
+// 	elem.textContent = '';
+// 	elem.append(span);
+// 	let a = document.createElement('a');
+// 	a.textContent = 'cross out';
+// 	a.href = '';
+// 	elem.append(a);
+// 	a.addEventListener('click', function(event){
+// 		span.style.textDecoration  = "line-through";
+// 		event.preventDefault();
+// 	});}
+
+// 342.2 Модифицируйте предыдущую задачу так, чтобы после нажатия на ссылку эта ссылка удалялась из абзаца (а текст абзаца становился перечеркнутым).
+// let span = document.querySelectorAll('#parent p');
+// for(let elem of span){
+// 	let span = document.createElement('span');
+// 	span.textContent = elem.textContent;
+// 	elem.textContent = '';
+// 	elem.append(span);
+// 	let a = document.createElement('a');
+// 	a.textContent = 'cross out';
+// 	a.href = '';
+// 	elem.append(a);
+// 	a.addEventListener('click', function(event){
+// 		span.style.textDecoration = "line-through";
+//         a.remove();
+// 		event.preventDefault();
+// 	});}
+
+// 342.3 Дана некоторая HTML таблица. Добавьте в эту таблицу еще одну колонку со ссылкой. По нажатию на эту ссылку ряд с этой ссылкой должен стать зеленого фона.
+// let table = document.querySelectorAll('#table');
+// let trs = document.querySelectorAll('#table tbody tr');
+// for (let tr of trs) {
+//  let td = document.createElement('td');
+//  let a = document.createElement('a');
+//  a.href = '';
+//  a.textContent = 'Color';
+//  td.append(a);
+//  tr.appendChild(td);
+//  tr.addEventListener('click', function(event){
+//      tr.style.backgroundColor = 'green';
+//      event.preventDefault();
+//  })
+// }
+
+// 342.4 Модифицируйте предыдущую задачу так, чтобы первое нажатие по ссылке красило ряд в зеленый фон, а второе нажатие отменяло это действие.
+// let table = document.querySelectorAll('#table');
+// let trs = document.querySelectorAll('#table tbody tr');
+// for (let tr of trs) {
+//  let td = document.createElement('td');
+//  let a = document.createElement('a');
+//  a.href = '';
+//  a.textContent = 'Color';
+//  td.append(a);
+//  tr.appendChild(td);
+//  tr.addEventListener('click', function getColor(event){
+//      tr.style.backgroundColor = 'green';
+//      event.preventDefault();
+//      tr.removeEventListener('click', getColor)
+//  })
+// }
+
+// 343.1 Модифицируйте мой код так, чтобы была только одна кнопка. Пусть по первому клику на эту кнопку элемент показывается, а по второму - скрывается.
+// let elem = document.querySelector('#elem');
+// let hide = document.querySelector('#hide');
+// hide.addEventListener('click', function show() {
+// 	elem.classList.toggle('hidden');
+// })
+
 // 344.1 Изучите мое решение, а затем самостоятельно, не подсматривая в мой код, решите эту задачу.
 // let buttons = document.querySelectorAll('button');
 // for (let button of buttons) {
@@ -659,13 +732,324 @@
 // }
 
 // 347.1 Дан массив. Выведите его элементы в виде списка ul.
+// let arr = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [10, 11, 12]];
 // let ul = document.querySelector('.ul');
-// arr = [1 ,2, 3, 4, 5];
-// i = 0;
-// while (i < arr.length) {
-// li = document.createElement('li');
-// li.innerHTML = arr[i];
-// ul.appendChild(li);
-// i++;
+// for (let subArr of arr) {
+//  for (let elem of subArr) {
+//      let li = document.createElement('li');
+//      li.textContent = elem;
+//      ul.appendChild(li);
+//  }
 // }
 
+// 347.2 Модифицируйте предыдущую задачу так, чтобы по клику на любую li в ней появлялся инпут, с помощью которого ее можно будет поредактировать.
+// let arr = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [10, 11, 12]];
+// let ul = document.querySelector('.ul');
+// for (let subArr of arr) {
+// for (let elem of subArr) {
+//     let li = document.createElement('li');
+//     li.textContent = elem;
+//     ul.appendChild(li);
+//     li.addEventListener('click', function func() { 
+//         let input = document.createElement('input');
+//         li.textContent = input.value;
+//         li.removeEventListener('click', func);
+//         li.appendChild(input);
+//     input.addEventListener('blur', function() {
+//         li.textContent = input.value;
+//         });
+//     });
+// }}
+
+// 347.3 Модифицируйте предыдущую задачу так, чтобы под списком был инпут, с помощью которого можно будет добавить новый элемент в конец списка ul. Сделайте так, чтобы новые li также можно было редактировать.
+// let arr = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [10, 11, 12]];
+// let ul = document.querySelector('.ul');
+// let button = document.querySelector('#button');
+// button.addEventListener('click', function () { 
+//     let li = document.createElement('li');
+//     li.textContent = '';
+//     ul.appendChild(li);
+//     li.addEventListener('click', function func() { 
+//         let input = document.createElement('input');
+//         li.textContent = input.value;
+//         li.removeEventListener('click', func);
+//         li.appendChild(input);
+//     input.addEventListener('blur', function() {
+//         li.textContent = input.value;
+//         });
+//     });
+// }) 
+// for (let subArr of arr) {
+// for (let elem of subArr) {
+//     let li = document.createElement('li');
+//     li.textContent = elem;
+//     ul.appendChild(li);
+//     li.addEventListener('click', function func() { 
+//         let input = document.createElement('input');
+//         li.textContent = input.value;
+//         li.removeEventListener('click', func);
+//         li.appendChild(input);
+//     input.addEventListener('blur', function() {
+//         li.textContent = input.value;
+//         });
+//     });
+// }}
+
+// 347.4.5 Модифицируйте предыдущую задачу так, чтобы в конце каждой li стояла ссылка 'удалить', с помощью которой можно будет удалить эту li из ul. Модифицируйте предыдущую задачу так, чтобы в конце каждой li также стояла ссылка 'перечеркнуть', с помощью которой можно будет перечеркнуть текст данного тега li.
+// let arr = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [10, 11, 12]];
+// let ul = document.querySelector('.ul');
+// let button = document.querySelector('#button');
+// function func2(li){
+// 	let a = document.createElement('a');
+// 	a.href = '';
+// 	a.textContent = ' remove';
+// 	li.append(a);
+// 	a.addEventListener('click', function(event){
+// 		event.preventDefault();
+// 		li.remove();
+// 	});
+// }
+// function func3(li, span){
+// 	let a = document.createElement('a');
+// 	a.href = '';
+// 	a.textContent = ' cross_out';
+// 	li.append(a);
+// 	a.setAttribute('class', 'colororangered');
+// 	a.addEventListener('click', function(event){
+// 		event.preventDefault();
+// 		span.setAttribute('class', 'cross_out');
+// 	});
+// }
+// button.addEventListener('click', function () { 
+//     let li = document.createElement('li');
+//     li.textContent = '';
+//     ul.appendChild(li);
+//     li.addEventListener('click', function func() { 
+//         let input = document.createElement('input');
+//         li.textContent = input.value;
+//         li.removeEventListener('click', func);
+//         li.appendChild(input);
+//     input.addEventListener('blur', function() {
+//         li.textContent = input.value;
+//         });
+// 		    });
+// }) 
+// for (let subArr of arr) {
+// for (let elem of subArr) {
+//     let li = document.createElement('li');
+//     li.textContent = elem;
+//     ul.appendChild(li);
+//     li.addEventListener('click', function func() { 
+//         let input = document.createElement('input');
+//         li.textContent = input.value;
+//         li.removeEventListener('click', func);
+//         li.appendChild(input);
+//     input.addEventListener('blur', function() {
+//         li.textContent = input.value;
+//         });
+//     });
+// }}
+// for(let elem of arr4){
+// 	let span = document.createElement('span');
+// 	let li = document.createElement('li');
+// 	span.textContent = elem;
+// 	li.appendChild(span);
+// 	span.addEventListener('click',func);
+// 	ul23.appendChild(li);
+// 	func2(li);
+// 	func3(li, span);
+// }
+// inp52.addEventListener('blur', function(){
+// 	let li = document.createElement('li');
+// 	let span = document.createElement('span');
+// 	span.textContent = inp52.value;
+// 	li.append(span);
+// 	ul23.appendChild(li);
+// 	inp52.value = '';
+// 	span.addEventListener('click', func);
+// 	func2(li);
+// 	func3(li, span);
+// });
+
+// 347.6.7.8.9 Выведите этих работников в HTML таблице. Добавьте ячейкам созданной таблицы возможность редактирования. Добавьте в вашу таблицу новую колонку со ссылкой на удаления ряда из таблицы. Сделайте под таблицей 3 инпута и кнопку для добавление нового работника. Пусть в инпуты вводятся имя, возраст и зарплата, и по нажатию на кнопку новый работник добавляется в таблицу. Реализуйте редактирование ячеек для вновь добавленных работников.
+// let employees2 = [
+// 	{name: 'employee1', age: 30, salary: 400},
+// 	{name: 'employee2', age: 31, salary: 500},
+// 	{name: 'employee3', age: 32, salary: 600},
+// ];
+// let table = document.querySelector('#table');
+// let button = document.querySelector('#button');
+// let inp1 = document.querySelector('#inp1');
+// let inp2 = document.querySelector('#inp2');
+// let inp3 = document.querySelector('#inp3');
+// button.addEventListener('click', function(){
+// 	let tr = document.createElement('tr');
+// 	let td1 = document.querySelector('td');
+// 	td1.textContent = inp1.value;
+// 	tr.appendChild(td1);
+// 	td1.addEventListener('click', func4);
+// 	let td2 = document.querySelector('td');
+// 	td2.textContent = inp2.value;
+// 	tr.appendChild(td2);
+// 	td2.addEventListener('click', func4);
+// 	let td3 = document.querySelector('td');
+// 	td3.textContent = inp3.value;
+// 	tr.appendChild(td3);
+// 	td3.addEventListener('click', func4);
+// 	table.appendChild(tr);
+// 	let td = document.createElement('td');
+// 	tr.appendChild(td);
+// 	let a = document.createElement('a');
+// 	a.href = '';
+// 	a.textContent = 'remove';
+// 	td.append(a);
+// 	tr.appendChild(td);
+// 	a.addEventListener('click', function(event){
+// 		tr.remove();
+// 		event.preventDefault();
+// 	});
+// });
+// function func4(){
+// 	this.removeEventListener('click', func4);
+// 	let input = document.createElement('input');
+// 	input.value = this.textContent;
+// 	this.textContent = '';
+// 	this.appendChild(input);
+// 	let self = this;
+// 	input.addEventListener('blur', function(){
+// 		self.textContent = input.value;
+// 		self.addEventListener('click', func);
+// 	});
+// }
+// for(let elem of employees2){
+// 	let tr = document.createElement('tr');
+// 	let td1 = document.createElement('td');
+// 	td1.textContent = elem.name;
+// 	tr.appendChild(td1);
+// 	td1.addEventListener('click', func4);
+// 	let td2 = document.createElement('td');
+// 	td2.textContent = elem.age;
+// 	tr.appendChild(td2);
+// 	td2.addEventListener('click', func4);
+// 	let td3 = document.createElement('td');
+// 	td3.textContent = elem.salary;
+// 	tr.appendChild(td3);
+// 	td3.addEventListener('click', func4);
+// 	table.appendChild(tr);
+// }
+// func5();
+// function func5(){
+// 	let trs4 = document.querySelectorAll('#table tr');
+// 	for (let tr of trs4) {
+// 		let td = document.createElement('td');
+// 		tr.appendChild(td);
+// 		let a = document.createElement('a');
+// 		a.href = '';
+// 		a.textContent = 'remove';
+// 		td.append(a);
+// 		tr.appendChild(td);
+// 		a.addEventListener('click', function(event){
+// 			tr.remove();
+// 			event.preventDefault();
+// 		});
+// 	}
+// }
+
+
+
+// 347.10.11.12.13 Выведите на экран каждого работника в своем теге li тега ul. Сделайте так, чтобы по клику на имя, возраст или зарплату работника появлялся инпут для редактирования этого поля.Добавьте в конец каждого тега li ссылку на удаление этого li из списка.Под списком сделайте форму для добавления нового работника.
+// let ul = document.querySelector('#ul');
+// let button = document.querySelector('#button');
+// let inp1 = document.querySelector('#inp1');
+// let inp2 = document.querySelector('#inp2');
+// let inp3 = document.querySelector('#inp3');
+// let employees3 = [
+// 	{name: 'employee1', age: 30, salary: 400},
+// 	{name: 'employee2', age: 31, salary: 500},
+// 	{name: 'employee3', age: 32, salary: 600},
+// ];
+// for(let elem of employees3){
+// 	let li = document.createElement('li');
+// 	let span_name = document.createElement('span');
+// 	span_name.textContent = elem.name; 
+// 	let span_age = document.createElement('span');
+// 	span_age.textContent = elem.age; 
+// 	let span_salary = document.createElement('span');
+// 	span_salary.textContent = elem.salary; 
+// 	li.append(span_name);
+// 	span_name.addEventListener('click', func6);
+// 	li.append(' ');
+// 	li.append(span_age);
+// 	span_age.addEventListener('click', func6);
+// 	li.append(' ');
+// 	li.append(span_salary);
+// 	span_salary.addEventListener('click', func6);
+// 	li.append(' ');
+// 	ul.appendChild(li);
+// }
+// function func6(){
+// 	this.removeEventListener('click', func6);
+// 	let input = document.createElement('input');
+// 	input.value = this.textContent;
+// 	this.textContent = '';
+// 	this.appendChild(input);
+// 	let self = this;
+// 	input.addEventListener('blur', function(){
+// 		self.textContent = input.value;
+// 	span_salary.addEventListener('click', func6);
+// 	li.append(' ');
+// 	ul.appendChild(li);
+// }
+// function func6(){
+// 	this.removeEventListener('click', func6);
+// 	let input = document.createElement('input');
+// 	input.value = this.textContent;
+// 	this.textContent = '';
+// 	this.appendChild(input);
+// 	let self = this;
+// 	input.addEventListener('blur', function(){
+// 		self.textContent = input.value;
+// 		self.addEventListener('click', func6);
+// 	});
+// }
+// func7();
+// function func7(){
+// 	let li2 = document.querySelectorAll('#ul li');
+// 	for(let li of li2){
+// 		let a = document.createElement('a');
+// 		a.href = '';
+// 		a.textContent = 'remove';
+// 		li.appendChild(a);
+// 		a.addEventListener('click', function(event){
+// 			li.remove();
+// 			event.preventDefault();
+// 		});
+// 	}
+// }
+// button.addEventListener('click', function(){
+// 	let li = document.createElement('li');
+// 	let span_name = document.createElement('span');
+// 	span_name.textContent = inp1.value; 
+// 	let span_age = document.createElement('span');
+// 	span_age.textContent = inp2.value; 
+// 	let span_salary = document.createElement('span');
+// 	span_salary.textContent = inp3.value; 
+// 	li.append(span_name);
+// 	span_name.addEventListener('click', func6);
+// 	li.append(' ');
+// 	li.append(span_age);
+// 	span_age.addEventListener('click', func6);
+// 	li.append(' ');
+// 	li.append(span_salary);
+// 	span_salary.addEventListener('click', func6);
+// 	li.append(' ');
+// 	ul.appendChild(li);
+// 	let a = document.createElement('a');
+// 	a.href = '';
+// 	a.textContent = 'remove';
+// 	li.appendChild(a);
+// 	a.addEventListener('click', function(event){
+// 		li.remove();
+// 		event.preventDefault();
+// 	});
+// });
